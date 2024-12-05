@@ -1,7 +1,13 @@
-function Boton({id, key, chequearGanador}): any
+type PropsDeBoton = 
+{
+    value: string;
+    handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  }
+
+function Boton({value, handleClick}: PropsDeBoton): JSX.Element
 {
     return (
-        <button id = {id} onClick = {chequearGanador}> {key} </button>
+        <button onClick = {handleClick}> {value} </button>
     )
 }
 
