@@ -1,12 +1,10 @@
-import './App.css'
+import './index.css'
 import Tablero from './Tablero'
 
-function App()
+function App() 
 {
-  return(
-    <>
-      <Tablero/>
-    </>
+  return (
+    <Tablero />
   )
 }
 
