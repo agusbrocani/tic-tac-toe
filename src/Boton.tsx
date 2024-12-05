@@ -1,13 +1,14 @@
 type PropsDeBoton = 
 {
+    id: string,
     value: string;
     handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   }
 
-function Boton({value, handleClick}: PropsDeBoton): JSX.Element
+function Boton({id, value, handleClick}: PropsDeBoton): JSX.Element
 {
     return (
-        <button onClick = {handleClick}> {value} </button>
+        <button id = {id} onClick = {handleClick}> {value}</button> //usar propiedad disabled
     )
 }
 
