@@ -15,7 +15,7 @@ function Tablero(): JSX.Element
     // console.log(evento.currentTarget.id)
     // console.log(evento.currentTarget.textContent)
 
-    if(0 == nroTurno % 2) //el turno es par => X
+    if(0 === nroTurno % 2) //el turno es par => X
     {
       evento.currentTarget.textContent = "X"
     }
