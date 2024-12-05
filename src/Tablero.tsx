@@ -4,13 +4,13 @@ function Tablero(): JSX.Element
 {
   const cantidadDeBotones = 9
   const cantidadDeFilas = 3
-  const botones = [];
-  const filas = [];
+  const botones = []
+  const filas = []
 
   function handleClick(evento: React.MouseEvent<HTMLButtonElement, MouseEvent>): void
   {
     console.log(evento.currentTarget.id)
-    console.log(evento.currentTarget.value)
+    console.log(evento.currentTarget.textContent)
   }
 
   for(let i = 0; i < cantidadDeBotones; i++) 
@@ -19,7 +19,8 @@ function Tablero(): JSX.Element
       <Boton
         key = {i} //Identificador para componentes en el árbol -> Reconciliación.
         id = {`${i}`} //Identificar cada elemento del DOM
-        value = {(i).toString()}  //value = ""
+        value = {(i + 1).toString()}  //value = ""
+        // value = ""
         handleClick = {handleClick}
       />
     )
