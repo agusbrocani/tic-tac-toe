@@ -8,7 +8,7 @@ type PropsDeBoton =
 function Boton({id, value, handleClick}: PropsDeBoton): JSX.Element
 {
     return (
-        <button id = {id} onClick = {handleClick}> {value}</button> //usar propiedad disabled
+        <button id = {id} onClick = {handleClick}>{value}</button> //usar propiedad disabled
     )
 }
 
