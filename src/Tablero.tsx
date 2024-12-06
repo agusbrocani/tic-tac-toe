@@ -18,9 +18,8 @@ function Tablero(): JSX.Element
   const cantidadDeFilas = 3
   const botones = []
   const filas = []
-  const cantidadMaximaDeCasillasOcupadas = 5
-  const casillasOcupadasX: number[] = Array(cantidadMaximaDeCasillasOcupadas).fill(-1)
-  const casillasOcupadasO: number[] = Array(cantidadMaximaDeCasillasOcupadas - 1).fill(-1)
+  const casillasOcupadasX: number[] = []
+  const casillasOcupadasO: number[] = []
 
   const [nroTurno, setNroTurno] = useState(0)
 
