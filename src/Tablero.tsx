@@ -1,23 +1,27 @@
 import Boton from './Boton'
 import { useState } from 'react'
 
+function insertarOrdenado<T>(coleccion: T[], aInsertar: T, comparar: (a: T, b: T) => number): T[]
+{
+  const ceColeccion = coleccion.length
+  let i = 0
+
+  while(i < ceColeccion && comparar(aInsertar, coleccion[i]) > 0)
+  {
+    i++
+  }
+
+  coleccion.splice(i, 0, aInsertar)
+
+  return coleccion
+}
+
 function Tablero(): JSX.Element
 {
-  const combinacionesGanadoras: number[][] = 
-  [
-    [0, 1, 2],
-    [0, 3, 6],
-    [0, 4, 8],
-    [1, 4, 7],
-    [2, 4, 6],
-    [2, 5, 8],
-    [3, 4, 5],
-    [6, 7, 8]
-  ]
-  const cantidadDeBotones = 9
-  const cantidadDeFilas = 3
   const botones = []
   const filas = []
+  const cantidadDeFilas = 3
+  const cantidadDeBotones = 9
   const casillasOcupadasX: number[] = []
   const casillasOcupadasO: number[] = []
 
@@ -27,11 +31,6 @@ function Tablero(): JSX.Element
   {
     // console.log(evento.currentTarget.id)
     // console.log(evento.currentTarget.textContent)
-
-    combinacionesGanadoras.map((valor: number[], index: number) => {
-      console.log('Valor:', valor)      
-      console.log('Índice:', index) 
-    })
 
     if(0 === nroTurno % 2) //el turno es par => X
     {
