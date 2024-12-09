@@ -54,7 +54,7 @@ function verificarGanador(coleccionAVerificar: number[]): boolean
             match++
           }
 
-          if(3 === match)
+          if(ceCombinacionesGanadores === match)
           {
             return true
           }
