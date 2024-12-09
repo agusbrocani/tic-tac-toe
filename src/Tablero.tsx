@@ -75,6 +75,7 @@ function Tablero(): JSX.Element
 
   const [casillasOcupadasX, setCasillasOcupadasX] = useState<number[]>([])
   const [casillasOcupadasO, setCasillasOcupadasO] = useState<number[]>([])
+  const [esGanador, setEsGanador] = useState("")
 
 
   const comparaEnteros = (a: number, b: number): number => a - b
@@ -103,10 +104,11 @@ function Tablero(): JSX.Element
     }
     evento.currentTarget.disabled = true
 
-    // console.log(casillasOcupadas)
+    console.log(casillasOcupadas)
     if(true === verificarGanador(casillasOcupadas))
     {
       console.log(`Tenemos un ganador: ${0 === nroTurno % 2? "X" : "O"}`)
+      setEsGanador(0 === nroTurno % 2? "X" : "O")
     }
 
     setNroTurno(nroTurno + 1)
@@ -137,6 +139,7 @@ function Tablero(): JSX.Element
   return(
     <>
       {filas}
+      {"" !== esGanador&& <span>Tenemos un ganador: {esGanador}</span>}
     </>
   )
 }
