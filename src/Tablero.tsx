@@ -16,6 +16,57 @@ function insertarOrdenado<T>(coleccion: T[], aInsertar: T, comparar: (a: T, b: T
   return coleccion
 }
 
+function verificarGanador(coleccionAVerificar: number[]): boolean
+  {
+    const combinacionesGanadoras: number[][] = 
+    [
+      [0, 1, 2],
+      [0, 3, 6],
+      [0, 4, 8],
+      [1, 4, 7],
+      [2, 4, 6],
+      [2, 5, 8],
+      [3, 4, 5],
+      [6, 7, 8]
+    ]
+    const ceCombinacionesGanadores: number = combinacionesGanadoras[0].length
+    const ceColeccionAVerificar: number = coleccionAVerificar.length
+    let cantidadDeIteracionesNecesariasEnColeccionAVerificar = ceColeccionAVerificar - ceCombinacionesGanadores + 1
+
+    if(cantidadDeIteracionesNecesariasEnColeccionAVerificar < 0)
+    {
+      return false
+    }
+
+    for(const subArray of combinacionesGanadoras)
+    {
+      console.log(subArray)
+      cantidadDeIteracionesNecesariasEnColeccionAVerificar = 0
+      while(cantidadDeIteracionesNecesariasEnColeccionAVerificar > 0)
+      {
+        let match = 0
+        console.log("Ingresos" + coleccionAVerificar)
+        for(let i: number = 0; i < ceCombinacionesGanadores; i++)
+        {
+          console.log("Comparacion: "+ subArray[i] + " " +coleccionAVerificar[i])
+          if(subArray[i] === coleccionAVerificar[i])
+          {
+            console.log("entre")
+            match++
+          }
+
+          if(ceCombinacionesGanadores === match)
+          {
+            return true
+          }
+        }
+        cantidadDeIteracionesNecesariasEnColeccionAVerificar--
+      }
+    }
+
+    return false
+  }
+
 function Tablero(): JSX.Element
 {
   const botones = []
