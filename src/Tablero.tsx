@@ -31,31 +31,30 @@ function verificarGanador(coleccionAVerificar: number[]): boolean
     ]
     const ceCombinacionesGanadores: number = combinacionesGanadoras[0].length
     const ceColeccionAVerificar: number = coleccionAVerificar.length
-    let cantidadDeIteracionesNecesariasEnColeccionAVerificar = ceColeccionAVerificar - ceCombinacionesGanadores + 1
+    let cantidadDeIteracionesNecesariasEnColeccionAVerificar
 
-    if(cantidadDeIteracionesNecesariasEnColeccionAVerificar < 0)
+    if(ceColeccionAVerificar - ceCombinacionesGanadores < 0)
     {
       return false
     }
 
     for(const subArray of combinacionesGanadoras)
     {
-      console.log(subArray)
-      cantidadDeIteracionesNecesariasEnColeccionAVerificar = 0
+      // console.log(subArray)
+      cantidadDeIteracionesNecesariasEnColeccionAVerificar = ceColeccionAVerificar - ceCombinacionesGanadores + 1
       while(cantidadDeIteracionesNecesariasEnColeccionAVerificar > 0)
       {
         let match = 0
-        console.log("Ingresos" + coleccionAVerificar)
+        // console.log("Ingresos" + coleccionAVerificar)
         for(let i: number = 0; i < ceCombinacionesGanadores; i++)
         {
-          console.log("Comparacion: "+ subArray[i] + " " +coleccionAVerificar[i])
+          // console.log("Comparacion: "+ subArray[i] + " " +coleccionAVerificar[i])
           if(subArray[i] === coleccionAVerificar[i])
           {
-            console.log("entre")
             match++
           }
 
-          if(ceCombinacionesGanadores === match)
+          if(3 === match)
           {
             return true
           }
@@ -73,8 +72,13 @@ function Tablero(): JSX.Element
   const filas = []
   const cantidadDeFilas = 3
   const cantidadDeBotones = 9
-  const casillasOcupadasX: number[] = []
-  const casillasOcupadasO: number[] = []
+
+  const [casillasOcupadasX, setCasillasOcupadasX] = useState<number[]>([])
+  const [casillasOcupadasO, setCasillasOcupadasO] = useState<number[]>([])
+
+
+  const comparaEnteros = (a: number, b: number): number => a - b
+  let casillasOcupadas: number[]
 
   const [nroTurno, setNroTurno] = useState(0)
 
@@ -86,12 +90,24 @@ function Tablero(): JSX.Element
     if(0 === nroTurno % 2) //el turno es par => X
     {
       evento.currentTarget.textContent = "X"
+      casillasOcupadas = [...casillasOcupadasX]
+      casillasOcupadas = insertarOrdenado(casillasOcupadas, Number(evento.currentTarget.id), comparaEnteros)
+      setCasillasOcupadasX(casillasOcupadas)
     }
     else
     {
       evento.currentTarget.textContent = "O"
+      casillasOcupadas = [...casillasOcupadasO]
+      casillasOcupadas = insertarOrdenado(casillasOcupadas, Number(evento.currentTarget.id), comparaEnteros)
+      setCasillasOcupadasO(casillasOcupadas)
     }
     evento.currentTarget.disabled = true
+
+    // console.log(casillasOcupadas)
+    if(true === verificarGanador(casillasOcupadas))
+    {
+      console.log(`Tenemos un ganador: ${0 === nroTurno % 2? "X" : "O"}`)
+    }
 
     setNroTurno(nroTurno + 1)
   }
