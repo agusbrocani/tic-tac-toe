@@ -29,37 +29,33 @@ function verificarGanador(coleccionAVerificar: number[]): boolean
       [3, 4, 5],
       [6, 7, 8]
     ]
-    const ceCombinacionesGanadores: number = combinacionesGanadoras[0].length
-    const ceColeccionAVerificar: number = coleccionAVerificar.length
-    let cantidadDeIteracionesNecesariasEnColeccionAVerificar
-
-    if(ceColeccionAVerificar - ceCombinacionesGanadores < 0)
+    const ceColeccionAVerificar = coleccionAVerificar.length
+    const ceCombinacionesGanadoras = combinacionesGanadoras[0].length
+    
+    if(ceColeccionAVerificar < ceCombinacionesGanadoras) //salida anticipada en caso de que no haya que verificar
     {
       return false
     }
 
-    for(const subArray of combinacionesGanadoras)
+    for(const combinacionGanadora of combinacionesGanadoras)
     {
-      // console.log(subArray)
-      cantidadDeIteracionesNecesariasEnColeccionAVerificar = ceColeccionAVerificar - ceCombinacionesGanadores + 1
-      while(cantidadDeIteracionesNecesariasEnColeccionAVerificar > 0)
+      let idxColeccionAVerificar = 0
+      let match = 0
+      while(idxColeccionAVerificar < ceColeccionAVerificar)
       {
-        let match = 0
-        // console.log("Ingresos" + coleccionAVerificar)
-        for(let i: number = 0; i < ceCombinacionesGanadores; i++)
+        for(let casilla = 0; casilla < ceCombinacionesGanadoras; casilla++)
         {
-          // console.log("Comparacion: "+ subArray[i] + " " +coleccionAVerificar[i])
-          if(subArray[i] === coleccionAVerificar[i])
+          if(combinacionGanadora[casilla] === coleccionAVerificar[idxColeccionAVerificar])
           {
             match++
-          }
-
-          if(ceCombinacionesGanadores === match)
-          {
-            return true
+            break
           }
         }
-        cantidadDeIteracionesNecesariasEnColeccionAVerificar--
+        if(ceCombinacionesGanadoras === match)
+        {
+          return true
+        }
+        idxColeccionAVerificar++
       }
     }
 
