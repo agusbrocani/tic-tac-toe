@@ -45,8 +45,9 @@ function verificarGanador(coleccionAVerificar: number[]): boolean {
 function Tablero(): JSX.Element {
   const botones = []
   const filas = []
+  const cantidadDeRondasTotales = 9
   const cantidadDeFilas = 3
-  const cantidadDeBotones = 9
+  const cantidadDeBotones = cantidadDeRondasTotales
 
   const [casillasOcupadasX, setCasillasOcupadasX] = useState<number[]>([])
   const [casillasOcupadasO, setCasillasOcupadasO] = useState<number[]>([])
@@ -109,10 +110,11 @@ function Tablero(): JSX.Element {
 
   return (
     <>
+      { "" === esGanador && nroTurno < cantidadDeRondasTotales && <span>Siguiente jugador: { 0 === nroTurno % 2 ? "X": "O" }</span> }
       <div style={{ pointerEvents: esGanador !== "" ? 'none' : 'auto' }}>
         {filas}
       </div>
-      {"" !== esGanador && <span>Tenemos un ganador: {esGanador}</span>}
+      { "" !== esGanador && <span>Tenemos un ganador: {esGanador}</span> }
     </>
   )
 }
