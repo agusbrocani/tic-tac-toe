@@ -1,20 +1,6 @@
 import Boton from './Boton'
 import { useState } from 'react'
-
-function insertarOrdenado<T>(coleccion: T[], aInsertar: T, comparar: (a: T, b: T) => number): T[]
-{
-  const ceColeccion = coleccion.length
-  let i = 0
-
-  while(i < ceColeccion && comparar(aInsertar, coleccion[i]) > 0)
-  {
-    i++
-  }
-
-  coleccion.splice(i, 0, aInsertar)
-
-  return coleccion
-}
+import { insertarOrdenado } from './utils/insertarOrdenado'
 
 function verificarGanador(coleccionAVerificar: number[]): boolean
   {
