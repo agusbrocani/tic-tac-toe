@@ -5,7 +5,7 @@
  * @param comparar : `funcion de comparacion` para realizar la insercion
  * @returns : inicio del array donde inserto
  */
-//Annotations para documentar
+//JSDoc para documentar
 
 export function insertarOrdenado<T>(coleccion: T[], aInsertar: T, comparar: (a: T, b: T) => number): T[]
 {
