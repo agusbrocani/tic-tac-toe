@@ -76,7 +76,7 @@ function Tablero(): JSX.Element {
       casillasOcupadas = insertarOrdenado(casillasOcupadas, Number(evento.currentTarget.id), comparaEnteros)
       setCasillasOcupadasO(casillasOcupadas)
     }
-    
+
     evento.currentTarget.disabled = true
 
     console.log(casillasOcupadas)
@@ -110,11 +110,11 @@ function Tablero(): JSX.Element {
 
   return (
     <>
-      { "" === esGanador && nroTurno < cantidadDeRondasTotales && <span>Siguiente jugador: { 0 === nroTurno % 2 ? "X": "O" }</span> }
+      {"" === esGanador && nroTurno < cantidadDeRondasTotales && <span>Siguiente jugador: {0 === nroTurno % 2 ? "X" : "O"}</span>}
       <div style={{ pointerEvents: esGanador !== "" ? 'none' : 'auto' }}>
         {filas}
       </div>
-      { "" !== esGanador && <span>Tenemos un ganador: {esGanador}</span> }
+      {"" !== esGanador && <span>Tenemos un ganador: {esGanador}</span>}
     </>
   )
 }
